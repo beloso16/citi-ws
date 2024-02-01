@@ -21,14 +21,20 @@ links = soup.find_all('a', class_='nodec1bold', href=re.compile(r'\.pdf$'))
 output_folder = 'downloaded_files'
 os.makedirs(output_folder, exist_ok=True)
 
-# Download the pdf files
-for link in links:
-    pdf_url = link['href']
-    print(pdf_url)
-    pdf_filename = os.path.join(output_folder, pdf_url.split('/')[-1])
-    response = requests.get("https://sf.citidirect.com"+pdf_url)
-    
-    with open(pdf_filename, 'wb') as pdf_file:
-        pdf_file.write(response.content)
+for i in df['CHS_file']:
+    print(i)
+"""
+# Build the path for the downloaded file within the output folder
+file_name = os.path.join(output_folder, "downloaded_file.zip")
 
-    print(f'Downloaded: {pdf_filename}')
+# Download the file
+response = requests.get(url)
+
+if response.status_code == 200:
+    # Save the file to the specified output folder
+    with open(file_name, "wb") as file:
+        file.write(response.content)
+    print(f"File downloaded successfully to: {file_name}")
+else:
+    print(f"Failed to download file. Status code: {response.status_code}")
+"""
