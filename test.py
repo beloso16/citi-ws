@@ -65,18 +65,17 @@ headers = {
 #download all CHS files
 #ws_functions.download_files(df[df['type'] == 'chs'].to_dict('records'), output_folder, headers, file_type='chs')
 
+#download all 
 df['total_principal_funds'] = ''
 
 # Iterate over 'chs' rows in the DataFrame
 for index, row in df[df['type'] == 'chs'].iterrows():
     file_path = output_folder + row['file']
-    target_page = 6
     total_principal_funds = ws_functions.extract_principal_funds(file_path)
 
     # Assign the extracted value to the 'total_principal_funds' column
     df.at[index, 'total_principal_funds'] = total_principal_funds
 
 
-# Display the updated DataFrame
 print(df)
 df.to_csv('/Users/faustine/Desktop/trex_tech_exam/citi-ws/dataframe.csv', index=False)
